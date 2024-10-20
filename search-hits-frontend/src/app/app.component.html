@@ -1,0 +1,52 @@
+<div class="app-container">
+  <h2 class="app-margin-top">Developer assignment - search hits highlighting</h2>
+  <div class="app-margin-top">
+    <p-floatLabel>
+      <textarea
+        variant="filled"
+        id="float-inputText"
+        rows="5"
+        cols="100"
+        pInputTextarea
+        [(ngModel)]="inputText"
+      ></textarea>
+      <label for="float-inputText">Write your input text</label>
+    </p-floatLabel>
+  </div>
+  <div class="app-margin-top">
+    <p-floatLabel>
+      <textarea
+        variant="filled"
+        id="float-queryText"
+        rows="5"
+        cols="100"
+        pInputTextarea
+        [(ngModel)]="queryText"
+      ></textarea>
+      <label for="float-queryText">Write your query text</label>
+    </p-floatLabel>
+  </div>
+  <div class="app-margin-top app-button-wrapper">
+    <p-button
+      label="Clear"
+      icon="pi pi-times"
+      severity="warning"
+      [disabled]="isClearButtonDisabled()"
+      (onClick)="onClear()"
+    />
+    <p-button
+      label="Search"
+      icon="pi pi-check"
+      [disabled]="isSearchButtonDisabled()"
+      [loading]="loading"
+      (onClick)="onSearch()"
+    />
+  </div>
+  <div *ngIf="isQueryResult" class="app-margin-top">
+    <p-card header="Query result">
+      <p [innerHTML]="highlightedText"></p>
+    </p-card>
+  </div>
+</div>
+
+<p-toast position="bottom-left" key="bl" />
